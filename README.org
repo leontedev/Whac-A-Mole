@@ -3,3 +3,34 @@
 *The cult classic with a personal twist.*
 
 Project 14 - Days 55-57 - HackingWithSwift.com/100
+
+** Day 55
+ - SKCropNode: Using a CropNode to hide the penguin while it's "inside" the hole. whackMask image is a png - the transparent part is where the object will be hidden. In our case the colored part is where the penguin will be visible, and all the rest will be "masked".
+
+#+BEGIN_SRC Swift
+        let sprite = SKSpriteNode(imageNamed: "whackHole")
+        addChild(sprite)
+        
+        let cropNode = SKCropNode()
+        cropNode.position = CGPoint(x: 0, y: 15) //this matches the "hole" location from what whackHole graphic. 
+        cropNode.zPosition = 1
+        cropNode.maskNode = SKSpriteNode(imageNamed: "whackMask")
+        
+        charNode = SKSpriteNode(imageNamed: "penguinGood")
+        charNode.position = CGPoint(x: 0, y: -90) // the penguin is "in the hole" by default
+        charNode.name = "character"
+        cropNode.addChild(charNode)
+        addChild(cropNode)
+#+END_SRC
+ - SKAction: to move the penguin up on the cropped mask and have it be visible
+#+BEGIN_SRC Swift
+charNode.run(SKAction.moveBy(x: 0, y: 80, duration: 0.05))
+#+END_SRC
+
+Apply a texture randomly between an evil or good penguin and hide it again after a few seconds:
+
+#+BEGIN_SRC Swift
+DispatchQueue.main.asyncAfter(deadline: .now() + hideTime * 3.5) { [weak self] in
+    self?.hide()
+}
+#+END_SRC
