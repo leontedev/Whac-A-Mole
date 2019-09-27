@@ -1,11 +1,15 @@
 * Whac-A-Mole
 
-*The cult classic with a personal twist.*
+[[day57.gif]]
+
+*The cult classic game.*
 
 Project 14 - Days 55-57 - HackingWithSwift.com/100
 
 ** Day 55
  - SKCropNode: Using a CropNode to hide the penguin while it's "inside" the hole. whackMask image is a png - the transparent part is where the object will be hidden. In our case the colored part is where the penguin will be visible, and all the rest will be "masked".
+
+If you want something to be cropped, it must be made a child of a crop node.
 
 #+BEGIN_SRC Swift
         let sprite = SKSpriteNode(imageNamed: "whackHole")
@@ -27,10 +31,29 @@ Project 14 - Days 55-57 - HackingWithSwift.com/100
 charNode.run(SKAction.moveBy(x: 0, y: 80, duration: 0.05))
 #+END_SRC
 
-Apply a texture randomly between an evil or good penguin and hide it again after a few seconds:
+Apply a texture (SKTexture) randomly between an evil or good penguin and hide it again after a few seconds:
 
 #+BEGIN_SRC Swift
 DispatchQueue.main.asyncAfter(deadline: .now() + hideTime * 3.5) { [weak self] in
     self?.hide()
 }
 #+END_SRC
+** Day 56
+ - SKAction.playSoundFileNamed()
+ - SKAction.wait(forDuration: 1) // waits 1 second
+ - SKAction.sequence() to run an array of actions
+#+BEGIN_SRC Swift
+        let delay = SKAction.wait(forDuration: 0.25)
+        
+        let hide = SKAction.moveBy(x: 0, y: -80, duration: 0.5)
+        let notVisible = SKAction.run { [weak self] in
+            self?.isVisible = false
+        }
+        
+        let sequence = SKAction.sequence([delay, hide, notVisible])
+        charNode.run(sequence)
+#+END_SRC
+** Day 57 - Challenge
+1. Record your own voice saying "Game over!" and have it play when the game ends.
+2. When showing “Game Over” add an SKLabelNode showing their final score.
+3. Use SKEmitterNode to create a smoke-like effect when penguins are hit, and a separate mud-like effect when they go into or come out of a hole.

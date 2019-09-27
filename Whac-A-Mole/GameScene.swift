@@ -8,7 +8,6 @@
 
 import SpriteKit
 
-
 class GameScene: SKScene {
     
     var gameScore: SKLabelNode!
@@ -19,6 +18,7 @@ class GameScene: SKScene {
     }
     var slots: [WhackSlot] = []
     var popupTime = 0.85
+    var numRounds = 0
     
     override func didMove(to view: SKView) {
         let background = SKSpriteNode(imageNamed: "whackBackground")
@@ -45,7 +45,27 @@ class GameScene: SKScene {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        guard let touch = touches.first else { return }
+        let location = touch.location(in: self)
+        let tappedNodes = nodes(at: location)
         
+        for node in tappedNodes {
+            guard let whackSlot = node.parent?.parent as? WhackSlot else { continue }
+            if !whackSlot.isVisible { continue }
+            if whackSlot.isHit { continue }
+            whackSlot.hit()
+            
+            if node.name == "charFriend" {
+                score -= 5
+                run(SKAction.playSoundFileNamed("whackBad.caf", waitForCompletion: false))
+            } else if node.name == "charEnemy" {
+                // make it smaller
+                whackSlot.charNode.xScale = 0.85
+                whackSlot.charNode.yScale = 0.85
+                score += 1
+                run(SKAction.playSoundFileNamed("whack.caf", waitForCompletion: false))
+            }
+        }
     }
     
     func createSlot(at position: CGPoint) {
@@ -56,6 +76,31 @@ class GameScene: SKScene {
     }
     
     func createEnemy() {
+        numRounds += 1
+        
+        if numRounds == 30 {
+            for slot in slots {
+                slot.hide()
+            }
+            
+            let gameOver = SKSpriteNode(imageNamed: "gameOver")
+            gameOver.position = CGPoint(x: 512, y: 384)
+            gameOver.zPosition = 1
+            addChild(gameOver)
+            
+            let scoreLabel = SKLabelNode(fontNamed: "Chalkduster")
+            scoreLabel.position = CGPoint(x: 512, y: 300)
+            scoreLabel.zPosition = 1
+            scoreLabel.text = "Final Score: \(score)"
+            scoreLabel.fontSize = 48
+            addChild(scoreLabel)
+            
+            run(SKAction.playSoundFileNamed("game.m4a", waitForCompletion: false))
+            
+            // to stop before it calls itself again (at the end after a delay)
+            return
+        }
+        
         popupTime *= 0.991
         slots.shuffle()
         slots[0].show(hideTime: popupTime)

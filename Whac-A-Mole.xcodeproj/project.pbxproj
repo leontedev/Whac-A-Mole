@@ -15,6 +15,8 @@
 		894A9CF1233BA66700C421DF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 894A9CF0233BA66700C421DF /* Assets.xcassets */; };
 		894A9CF4233BA66700C421DF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 894A9CF2233BA66700C421DF /* LaunchScreen.storyboard */; };
 		894A9CFE233C766E00C421DF /* WhackSlot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894A9CFD233C766E00C421DF /* WhackSlot.swift */; };
+		894A9D01233DF9CB00C421DF /* SmokeParticles.sks in Resources */ = {isa = PBXBuildFile; fileRef = 894A9D00233DF9CB00C421DF /* SmokeParticles.sks */; };
+		894A9D05233DFF4000C421DF /* MudParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = 894A9D04233DFF4000C421DF /* MudParticle.sks */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +32,9 @@
 		894A9CFB233BA76200C421DF /* whack.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = whack.caf; sourceTree = "<group>"; };
 		894A9CFC233BA76200C421DF /* whackBad.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = whackBad.caf; sourceTree = "<group>"; };
 		894A9CFD233C766E00C421DF /* WhackSlot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhackSlot.swift; sourceTree = "<group>"; };
+		894A9CFF233CF80600C421DF /* game.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = game.m4a; sourceTree = "<group>"; };
+		894A9D00233DF9CB00C421DF /* SmokeParticles.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = SmokeParticles.sks; sourceTree = "<group>"; };
+		894A9D04233DFF4000C421DF /* MudParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MudParticle.sks; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +71,8 @@
 				894A9CE5233BA66500C421DF /* GameScene.sks */,
 				894A9CEB233BA66500C421DF /* GameViewController.swift */,
 				894A9CE9233BA66500C421DF /* GameScene.swift */,
+				894A9D00233DF9CB00C421DF /* SmokeParticles.sks */,
+				894A9D04233DFF4000C421DF /* MudParticle.sks */,
 				894A9CFD233C766E00C421DF /* WhackSlot.swift */,
 				894A9CED233BA66500C421DF /* Main.storyboard */,
 				894A9CF0233BA66700C421DF /* Assets.xcassets */,
@@ -73,6 +80,7 @@
 				894A9CF5233BA66700C421DF /* Info.plist */,
 				894A9CFB233BA76200C421DF /* whack.caf */,
 				894A9CFC233BA76200C421DF /* whackBad.caf */,
+				894A9CFF233CF80600C421DF /* game.m4a */,
 			);
 			path = "Whac-A-Mole";
 			sourceTree = "<group>";
@@ -135,6 +143,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				894A9D05233DFF4000C421DF /* MudParticle.sks in Resources */,
+				894A9D01233DF9CB00C421DF /* SmokeParticles.sks in Resources */,
 				894A9CEF233BA66500C421DF /* Main.storyboard in Resources */,
 				894A9CE6233BA66500C421DF /* GameScene.sks in Resources */,
 				894A9CF1233BA66700C421DF /* Assets.xcassets in Resources */,
